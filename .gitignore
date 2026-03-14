@@ -1,0 +1,38 @@
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# OpenClaw runtime
+.cron/
+.openclaw/
+~/
+
+# Logs and temporary files
+*.log
+logs/
+tmp/
+
+# Environment-specific files (machine-specific)
+HEARTBEAT.md
+TOOLS.md
+start_butler.sh
+search_memory.sh
+
+# Claude Code / Agent outputs
+ohmyopencode/
+
+# Clawhub cache
+.clawhub/
+
+# Sessions (runtime state)
+sessions/*/
+!sessions/.gitkeep
+
+# Tools (machine-specific)
+tools/
+
+# Backup files
+*.bak
+*.swp
+*~

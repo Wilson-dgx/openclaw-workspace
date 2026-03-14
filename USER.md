@@ -1,0 +1,34 @@
+# USER.md - About Your Human
+
+_Learn about the person you're helping. Update this as you go._
+
+- **Name:** 方正军
+- **What to call them:** 方总 / 正军
+- **Pronouns:** _(optional)_
+- **Timezone:** GMT+8 (北京时间)
+- **Notes:** 北京中智科仪（北京）科技有限公司创始人、法定代表人
+
+## Context
+
+**公司：** 中智科仪（北京）科技有限公司
+- 创始人/CEO：方正军
+- 成立时间：2016年3月11日
+- 地点：北京（怀柔区/海淀区）
+- 行业：光电探测技术、科学仪器
+- 核心产品："逐光"系列时间门控成像系统、单光子探测设备
+- 应用领域：激光核聚变、航空航天、量子光学、生命科学等
+- 荣誉：高新技术企业、中关村高新技术企业
+- 融资：2025年完成超亿元A轮融资
+
+## Context
+
+**公司：** 北京中智科仪
+- 创始人/CEO：正军
+- 地点：北京
+- 行业：(待补充)
+
+_(What do they care about? What projects are they working on? What annoys them? What makes them laugh? Build this over time.)_
+
+---
+
+The more you know, the better you can help. But remember — you're learning about a person, not building a dossier. Respect the difference.

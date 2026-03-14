@@ -1,0 +1,11 @@
+# OpenClaw 记忆增强定时任务
+# 添加到 crontab: crontab -e
+
+# 每日 23:00 - 记忆蒸馏
+0 23 * * * cd ~/.openclaw/workspace && ./scripts/memory-toolkit.sh daily >> logs/memory-daily.log 2>&1
+
+# 每周一 03:00 - 归档旧记忆
+0 3 * * 1 cd ~/.openclaw/workspace && ./scripts/memory-toolkit.sh archive >> logs/memory-archive.log 2>&1
+
+# 每日 03:00 - 更新索引
+0 3 * * * cd ~/.openclaw/workspace && ./scripts/memory-toolkit.sh index >> logs/memory-index.log 2>&1
