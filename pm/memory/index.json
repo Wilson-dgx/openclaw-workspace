@@ -1,0 +1,46 @@
+{
+  "version": "1.1",
+  "agent": "pm",
+  "lastUpdated": "2026-03-04T09:20:20Z",
+  "workspace": "/Users/ciss-ai/.openclaw/agents/pm",
+  "stats": {
+    "totalMemoryFiles": 1,
+    "dailyLogs": 1,
+    "projectFiles": 0
+  },
+  "categories": {
+    "daily": {
+      "path": "memory/",
+      "pattern": "YYYY-MM-DD.md",
+      "description": "每日会话日志",
+      "retentionDays": 90
+    },
+    "projects": {
+      "path": "projects/",
+      "pattern": "*.md",
+      "description": "项目文档"
+    },
+    "knowledge": {
+      "path": "knowledge/",
+      "subdirs": ["company", "products", "tech"],
+      "description": "知识库"
+    },
+    "sessions": {
+      "path": "sessions/summaries/",
+      "pattern": "*.md",
+      "description": "会话摘要"
+    }
+  },
+  "searchTips": [
+    "使用 memory_search <关键词> 搜索历史记忆",
+    "项目名称可在 projects/ 目录查找",
+    "知识库按类别组织在 knowledge/ 下",
+    "旧记忆自动归档到 memory/archive/"
+  ],
+  "maintenance": {
+    "lastDistill": "2026-03-04",
+    "lastArchive": "2026-03-04",
+    "distillSchedule": "daily at 23:00",
+    "archiveSchedule": "weekly on Monday 03:00"
+  }
+}

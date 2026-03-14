@@ -1,0 +1,38 @@
+{
+  "version": 1,
+  "profiles": {
+    "kimi-coding:default": {
+      "type": "api_key",
+      "provider": "kimi-coding",
+      "key": "sk-kimi-nOoFSxevjsGdDbrni0EumMcthjbB76DPvHCuImulpOKdU0xkiz1ncAHEovG7XNgK"
+    },
+    "zai:default": {
+      "type": "api_key",
+      "provider": "zai",
+      "key": "ee1ae9216f2e4690a086d31980191200.mkzMuS4bk0Ig94uJ"
+    },
+    "custom-lmstudio:default": {
+      "type": "api_key",
+      "provider": "custom-lmstudio",
+      "key": "lmstudio-local"
+    }
+  },
+  "lastGood": {
+    "kimi-coding": "kimi-coding:default",
+    "custom-lmstudio": "custom-lmstudio:default"
+  },
+  "usageStats": {
+    "kimi-coding:default": {
+      "lastUsed": 1772544743101,
+      "errorCount": 0
+    },
+    "custom-lmstudio:default": {
+      "errorCount": 0,
+      "lastUsed": 1772551916699
+    },
+    "zai:default": {
+      "errorCount": 0,
+      "lastUsed": 1773487439307
+    }
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "version": 1,
+  "profiles": {
+    "kimi-coding:default": {
+      "type": "api_key",
+      "provider": "kimi-coding",
+      "key": "sk-kimi-nOoFSxevjsGdDbrni0EumMcthjbB76DPvHCuImulpOKdU0xkiz1ncAHEovG7XNgK"
+    },
+    "zai:default": {
+      "type": "api_key",
+      "provider": "zai",
+      "key": "ee1ae9216f2e4690a086d31980191200.mkzMuS4bk0Ig94uJ"
+    }
+  },
+  "lastGood": {
+    "kimi-coding": "kimi-coding:default",
+    "zai": "zai:default"
+  },
+  "usageStats": {
+    "kimi-coding:default": {
+      "lastUsed": 1771941167298,
+      "errorCount": 0
+    },
+    "zai:default": {
+      "lastUsed": 1773414331040,
+      "errorCount": 0
+    }
+  }
+}
