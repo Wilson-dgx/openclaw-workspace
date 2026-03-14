@@ -45,7 +45,7 @@ mkdir -p "$OPENCLAW_DIR"
 mkdir -p "$OPENCLAW_DIR/logs"
 mkdir -p "$OPENCLAW_DIR/.cron"
 
-# 3. 生成配置文件（从模板）
+# 3. 生成配置文件（智能合并）
 CONFIG_TEMPLATE="$WORKSPACE_DIR/config/openclaw.json.template"
 CONFIG_TARGET="$OPENCLAW_DIR/openclaw.json"
 
@@ -55,12 +55,61 @@ if [ ! -f "$CONFIG_TEMPLATE" ]; then
 fi
 
 if [ -f "$CONFIG_TARGET" ]; then
-    warn "配置文件已存在，备份到: $CONFIG_TARGET.backup.$(date +%Y%m%d%H%M%S)"
+    warn "配置文件已存在，智能更新路径..."
     cp "$CONFIG_TARGET" "$CONFIG_TARGET.backup.$(date +%Y%m%d%H%M%S)"
-fi
+    
+    # 使用 Python 智能合并：保留现有配置，只更新路径
+    python3 << EOF
+import json
+import re
 
-log "生成配置文件..."
-sed "s|{{HOME}}|$HOME_DIR|g" "$CONFIG_TEMPLATE" > "$CONFIG_TARGET"
+# 读取现有配置
+with open("$CONFIG_TARGET", 'r') as f:
+    existing = json.load(f)
+
+# 读取模板
+template_text = open("$CONFIG_TEMPLATE").read()
+template_text = template_text.replace('{{HOME}}', "$HOME_DIR")
+template = json.loads(template_text)
+
+# 只更新路径相关的字段，保留模型等其他配置
+def update_paths(obj, template_obj):
+    if isinstance(obj, dict):
+        for key, value in obj.items():
+            if key in ['workspace', 'agentDir'] and isinstance(value, str):
+                # 更新路径
+                if '/.openclaw/' in value or value.startswith('/Users/'):
+                    # 保留相对结构，替换 home 目录
+                    if 'workspace' in value:
+                        obj[key] = "$HOME_DIR/.openclaw/workspace"
+                    elif '/agents/' in value:
+                        agent_name = value.split('/')[-1] if '/' in value else ''
+                        if agent_name and agent_name not in ['agents', '']:
+                            obj[key] = f"$HOME_DIR/.openclaw/workspace/{agent_name}"
+            elif isinstance(value, (dict, list)):
+                update_paths(value, template_obj.get(key, {}))
+    elif isinstance(obj, list):
+        for i, item in enumerate(obj):
+            if isinstance(item, dict):
+                update_paths(item, {})
+
+# 更新路径
+update_paths(existing, template)
+
+# 确保 agents.defaults.workspace 正确
+if 'agents' in existing and 'defaults' in existing['agents']:
+    existing['agents']['defaults']['workspace'] = "$HOME_DIR/.openclaw/workspace"
+
+# 保存
+with open("$CONFIG_TARGET", 'w') as f:
+    json.dump(existing, f, ensure_ascii=False, indent=2)
+
+print("✅ 配置已更新（保留模型设置，更新路径）")
+EOF
+else
+    log "生成新配置文件..."
+    sed "s|{{HOME}}|$HOME_DIR|g" "$CONFIG_TEMPLATE" > "$CONFIG_TARGET"
+fi
 
 # 4. 创建本地专属文件
 log "创建本地专属文件..."
