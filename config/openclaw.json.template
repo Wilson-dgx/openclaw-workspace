@@ -1,0 +1,154 @@
+{
+  "meta": {
+    "lastTouchedVersion": "2026.3.12",
+    "lastTouchedAt": "2026-03-14T09:58:31.011Z",
+    "configType": "portable"
+  },
+  "wizard": {
+    "lastRunAt": "2026-03-03T15:51:40.345Z",
+    "lastRunVersion": "2026.3.2",
+    "lastRunCommand": "doctor",
+    "lastRunMode": "local"
+  },
+  "auth": {
+    "profiles": {
+      "kimi-coding:default": {
+        "provider": "kimi-coding",
+        "mode": "api_key"
+      },
+      "lmstudio:default": {
+        "provider": "lmstudio",
+        "mode": "api_key"
+      },
+      "zai:default": {
+        "provider": "zai",
+        "mode": "api_key"
+      }
+    }
+  },
+  "models": {
+    "mode": "merge",
+    "providers": {
+      "kimi-coding": {
+        "baseUrl": "https://api.kimi.com/coding/",
+        "api": "anthropic-messages",
+        "models": [
+          {
+            "id": "k2p5",
+            "name": "Kimi for Coding",
+            "reasoning": true,
+            "input": ["text", "image"],
+            "cost": {
+              "input": 0,
+              "output": 0,
+              "cacheRead": 0,
+              "cacheWrite": 0
+            },
+            "contextWindow": 262144,
+            "maxTokens": 32768
+          }
+        ]
+      },
+      "lmstudio": {
+        "baseUrl": "http://127.0.0.1:1234/v1",
+        "api": "openai",
+        "models": [
+          {
+            "id": "minimax/minimax-m2.5",
+            "name": "MiniMax M2.5 (Local)",
+            "cost": {
+              "input": 0,
+              "output": 0
+            },
+            "contextWindow": 32768
+          },
+          {
+            "id": "minimax/m2p5",
+            "name": "MiniMax M2.5 MLX",
+            "alias": "LMstudio",
+            "cost": {
+              "input": 0,
+              "output": 0
+            },
+            "contextWindow": 32768
+          }
+        ]
+      },
+      "zai": {
+        "baseUrl": "https://api.z.ai/v1",
+        "api": "openai",
+        "models": [
+          {
+            "id": "glm-5",
+            "name": "GLM-5",
+            "alias": "GLM",
+            "cost": {
+              "input": 0.0001,
+              "output": 0.0004
+            },
+            "contextWindow": 131072
+          }
+        ]
+      }
+    }
+  },
+  "agents": {
+    "defaults": {
+      "model": {
+        "primary": "custom-lmstudio/minimax-m2.5-mlx"
+      },
+      "models": {
+        "zai/glm-5": {
+          "alias": "GLM"
+        },
+        "custom-lmstudio/minimax-m2.5-mlx": {
+          "alias": "LMstudio"
+        }
+      },
+      "workspace": "{{HOME}}/.openclaw/workspace",
+      "compaction": {
+        "mode": "safeguard"
+      },
+      "maxConcurrent": 4,
+      "subagents": {
+        "maxConcurrent": 8
+      }
+    },
+    "list": [
+      {
+        "id": "main",
+        "model": "kimi-coding/k2p5"
+      },
+      {
+        "id": "butler",
+        "name": "butler",
+        "model": "lmstudio/minimax-m2.5",
+        "workspace": "{{HOME}}/.openclaw/workspace/butler",
+        "agentDir": "{{HOME}}/.openclaw/workspace/butler/agent"
+      },
+      {
+        "id": "pm",
+        "name": "pm",
+        "model": "kimi-coding/k2p5",
+        "workspace": "{{HOME}}/.openclaw/workspace/pm",
+        "agentDir": "{{HOME}}/.openclaw/workspace/pm/agent"
+      },
+      {
+        "id": "zongzhu",
+        "name": "zongzhu",
+        "model": "kimi-coding/k2p5",
+        "workspace": "{{HOME}}/.openclaw/workspace/zongzhu",
+        "agentDir": "{{HOME}}/.openclaw/workspace/zongzhu/agent"
+      }
+    ]
+  },
+  "session": {
+    "dmScope": "per-channel-peer",
+    "history": {
+      "keepTurns": 50
+    }
+  },
+  "cron": {
+    "enabled": true
+  }
+}
