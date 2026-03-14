@@ -159,7 +159,10 @@ def main():
     print(f"\n总计: ✅ 通过 {passed} / ❌ 失败 {failed}")
     
     # 保存详细报告
-    report_file = f"/Users/ciss-ai/.openclaw/agents/butler/test_report_{datetime.now().strftime('%Y%m%d_%H%M%S')}.json"
+    import os
+    report_dir = os.path.expanduser("~/.openclaw/agents/butler")
+    os.makedirs(report_dir, exist_ok=True)
+    report_file = f"{report_dir}/test_report_{datetime.now().strftime('%Y%m%d_%H%M%S')}.json"
     with open(report_file, 'w', encoding='utf-8') as f:
         json.dump(all_results, f, ensure_ascii=False, indent=2)
     print(f"\n📄 详细报告已保存: {report_file}")

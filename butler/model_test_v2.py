@@ -8,6 +8,7 @@
 import requests
 import json
 import time
+import os
 from datetime import datetime
 
 # 配置
@@ -232,7 +233,7 @@ def main():
         }
     }
     
-    report_file = f"/Users/ciss-ai/.openclaw/agents/butler/test_report_{datetime.now().strftime('%Y%m%d_%H%M%S')}.json"
+    report_file = f"{os.path.expanduser('~/.openclaw/agents/butler')}/test_report_{datetime.now().strftime('%Y%m%d_%H%M%S')}.json"
     with open(report_file, 'w', encoding='utf-8') as f:
         json.dump(report, f, ensure_ascii=False, indent=2)
     print(f"\n📄 详细报告已保存: {report_file}")

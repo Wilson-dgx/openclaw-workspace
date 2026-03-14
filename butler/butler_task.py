@@ -8,7 +8,7 @@ import json
 import os
 import sys
 
-WORKSPACE = "/Users/ciss-ai/.openclaw/workspace"
+WORKSPACE = os.path.expanduser("~/.openclaw/workspace")
 LM_STUDIO_URL = "http://127.0.0.1:1234/v1/chat/completions"
 MODEL_ID = "minimax/minimax-m2.5"
 

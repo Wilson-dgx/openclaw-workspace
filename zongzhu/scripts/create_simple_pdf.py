@@ -154,8 +154,9 @@ def create_pdf():
     pdf.cell(0, 8, "HTML version available at: ~/Desktop/已安装技能详细报告.html", ln=True, align='C')
     
     # Save
-    pdf.output('/Users/ciss-ai/Desktop/Skills_Report.pdf')
-    print("PDF created successfully: ~/Desktop/Skills_Report.pdf")
+    output_path = os.path.expanduser('~/Desktop/Skills_Report.pdf')
+    pdf.output(output_path)
+    print(f"PDF created successfully: {output_path}")
 
 if __name__ == '__main__':
     create_pdf()

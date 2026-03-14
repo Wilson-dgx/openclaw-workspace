@@ -28,7 +28,8 @@ def create_pdf():
     pdf.set_font('SimHei', '', 12)
     
     # 读取 Markdown 文件
-    with open('/Users/ciss-ai/.openclaw/agents/zongzhu/已安装技能详细报告.md', 'r', encoding='utf-8') as f:
+    md_path = os.path.expanduser('~/.openclaw/agents/zongzhu/已安装技能详细报告.md')
+    with open(md_path, 'r', encoding='utf-8') as f:
         content = f.read()
     
     # 处理每一行
@@ -67,4 +68,6 @@ def create_pdf():
     print("PDF 创建成功！")
 
 if __name__ == '__main__':
+    create_pdf()
+_':
     create_pdf()
